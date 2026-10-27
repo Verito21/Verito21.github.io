@@ -4,10 +4,10 @@ A single-page portfolio site. One file (`index.html`), no build step, no depende
 
 ## Deploy on GitHub Pages
 
-1. Create a public repo named `Verito.github.io` (your GitHub username + `.github.io`).
+1. Create a public repo named `verito21.github.io` (your GitHub username + `.github.io`).
 2. Put `index.html` in the repo root and push to `main`.
 3. In the repo: Settings → Pages → Source: "Deploy from a branch" → `main` / root → Save.
-4. Wait a minute or two. The site is live at https://verito.github.io.
+4. Wait a minute or two. The site is live at https://verito21.github.io.
 
 ## Other hosts
 
