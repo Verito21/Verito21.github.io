@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Srijan Singh Portfolio</title>
+<meta name="description" content="Srijan Singh, backend engineer in Noida working with C#, .NET, Python and event-driven systems, moving into applied AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a backend engineer's page. Hero pairs the name with a career "event stream" log; below, ruled sections read like a service catalogue. */
+:root {
+  --bg: #eef1f4;
+  --surface: #f9fafb;
+  --fg: #14202b;
+  --muted: #55636f;
+  --line: #cdd5dc;
+  --accent: #0b6e5f;
+  --accent-ink: #ffffff;
+  --signal: #b4570a;
+  --font-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f171c; --surface: #162128; --fg: #e4ebf0; --muted: #94a4af;
+    --line: #2a3a44; --accent: #4cc9b0; --accent-ink: #072620; --signal: #f0a35a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f171c; --surface: #162128; --fg: #e4ebf0; --muted: #94a4af;
+  --line: #2a3a44; --accent: #4cc9b0; --accent-ink: #072620; --signal: #f0a35a;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-block: 0 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1040px; margin: 0 auto; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.1; }
+p { margin: 0; }
+.mono { font-family: var(--font-mono); }
+.label {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted);
+}
+
+/* top bar */
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 20px; flex-wrap: wrap; }
+.bar .id { font-family: var(--font-mono); font-size: 14px; font-weight: 500; }
+.bar nav { display: flex; gap: 20px; flex-wrap: wrap; }
+.bar nav a { color: var(--muted); text-decoration: none; font-size: 14px; }
+.bar nav a:hover { color: var(--fg); }
+
+/* hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 40px; padding-block: 40px 56px; align-items: start; }
+.hero h1 { font-size: clamp(44px, 7vw, 76px); font-weight: 700; letter-spacing: -0.025em; }
+.hero .role { margin-top: 20px; font-size: 20px; line-height: 1.45; max-width: 30em; }
+.hero .role strong { font-weight: 600; }
+.hero .sub { margin-top: 16px; color: var(--muted); max-width: 34em; }
+.badges { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 8px; }
+.badge { font-family: var(--font-mono); font-size: 12.5px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); }
+.badge.live { border-color: var(--accent); color: var(--accent); }
+
+.stream { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.stream-head { display: flex; justify-content: space-between; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+.stream-body { overflow-x: auto; }
+.ev { display: grid; grid-template-columns: 64px 140px minmax(200px, 1fr); gap: 12px; padding: 11px 14px; border-bottom: 1px solid var(--line); font-family: var(--font-mono); font-size: 13px; line-height: 1.5; }
+.ev:last-child { border-bottom: 0; }
+.ev .t { color: var(--muted); }
+.ev .k { color: var(--accent); }
+.ev .p { font-family: var(--font-body); font-size: 14px; }
+.ev.now .k { color: var(--signal); }
+
+/* sections */
+section { border-top: 1px solid var(--line); padding-block: 48px; display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 32px; }
+section > h2 { font-size: 14px; font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding-top: 6px; }
+.content { min-width: 0; display: grid; gap: 36px; }
+
+.job { display: grid; gap: 10px; }
+.job-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px 24px; flex-wrap: wrap; }
+.job h3 { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; }
+.job .when { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.job .org { color: var(--muted); }
+.job .org b { color: var(--fg); font-weight: 600; }
+.job p.d { max-width: 62ch; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.tag { font-family: var(--font-mono); font-size: 12px; padding: 2px 8px; border-radius: 3px; background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--fg); }
+
+.work { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.card { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 22px; display: grid; gap: 10px; align-content: start; }
+.card h3 { font-size: 21px; font-weight: 700; }
+.card p { color: var(--muted); font-size: 15px; }
+.card .meta { font-family: var(--font-mono); font-size: 12px; color: var(--accent); letter-spacing: 0.04em; text-transform: uppercase; }
+.card.idea .meta { color: var(--signal); }
+
+.stack { display: grid; gap: 0; }
+.row { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 20px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+.row:first-child { padding-top: 0; }
+.row:last-child { border-bottom: 0; }
+.row .label { padding-top: 3px; }
+.row .items { display: flex; flex-wrap: wrap; gap: 6px 8px; }
+.row .items span { font-size: 15px; }
+.row .items span:not(:last-child)::after { content: "/"; color: var(--line); margin-left: 8px; }
+
+.edu { display: grid; gap: 18px; }
+.edu .item { display: flex; justify-content: space-between; gap: 6px 24px; flex-wrap: wrap; }
+.edu h3 { font-size: 20px; font-weight: 700; }
+.edu .sub { color: var(--muted); font-size: 15px; }
+.edu .when { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+
+.open { display: grid; gap: 14px; }
+.open h3 { font-size: clamp(26px, 4vw, 36px); font-weight: 700; letter-spacing: -0.015em; max-width: 22ch; }
+.open p { max-width: 58ch; }
+.links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px; }
+.btn { display: inline-block; padding: 10px 16px; border-radius: 6px; background: var(--accent); color: var(--accent-ink); font-weight: 600; text-decoration: none; font-size: 15px; }
+.btn:hover { filter: brightness(1.08); }
+.btn:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+.btn.ghost { background: transparent; color: var(--fg); border: 1px solid var(--line); }
+
+.mail { display: flex; align-items: center; gap: 8px 14px; flex-wrap: wrap; margin-top: 8px; }
+.mail .addr { font-family: var(--font-mono); font-size: 15px; user-select: all; overflow-wrap: anywhere; }
+.copy { font-family: var(--font-mono); font-size: 12px; padding: 4px 10px; border-radius: 4px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+.copy:hover { border-color: var(--accent); color: var(--accent); }
+.copy:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+footer { border-top: 1px solid var(--line); padding-top: 24px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; color: var(--muted); font-size: 13px; font-family: var(--font-mono); }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-block: 24px 40px; }
+  section { grid-template-columns: minmax(0, 1fr); gap: 20px; padding-block: 36px; }
+  .work { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 520px) {
+  .row { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .hero .role { font-size: 18px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn { transition: filter 0.15s ease; }
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="bar">
+    <span class="id">srijan@noida:~$</span>
+    <nav aria-label="Sections">
+      <a href="#experience">Experience</a>
+      <a href="#work">Work</a>
+      <a href="#stack">Stack</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div>
+      <p class="label">Backend engineer · Noida, India</p>
+      <h1 style="margin-top:14px">Srijan Singh</h1>
+      <p class="role">I build <strong>C# and .NET services</strong>, REST APIs and event-driven systems, and I'm now moving into <strong>Python and applied AI</strong>.</p>
+      <p class="sub">Software Engineer at Nouveau Labs, working on Five9. Before that, two years as a Senior Software Engineer at GlobalLogic on the Kastle account. M.Tech in Computer Science from IIT Mandi.</p>
+      <div class="badges">
+        <span class="badge live">Open to Python + AI work</span>
+        <span class="badge">GitHub: Verito</span>
+      </div>
+    </div>
+
+    <div class="stream" role="figure" aria-label="Career timeline written as an event log">
+      <div class="stream-head">
+        <span class="label">topic: career.events</span>
+        <span class="label">5 events</span>
+      </div>
+      <div class="stream-body">
+        <div class="ev"><span class="t">2021</span><span class="k">education.started</span><span class="p">M.Tech, Computer Science at IIT Mandi</span></div>
+        <div class="ev"><span class="t">2023</span><span class="k">education.completed</span><span class="p">M.Tech finished</span></div>
+        <div class="ev"><span class="t">2023-09</span><span class="k">role.started</span><span class="p">Senior Software Engineer, GlobalLogic (Kastle)</span></div>
+        <div class="ev"><span class="t">2025-12</span><span class="k">role.started</span><span class="p">Software Engineer, Nouveau Labs (Five9)</span></div>
+        <div class="ev now"><span class="t">now</span><span class="k">seeking</span><span class="p">Internship-style Python and AI projects, alongside the full-time role</span></div>
+      </div>
+    </div>
+  </div>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="content">
+      <article class="job">
+        <div class="job-top">
+          <h3>Software Engineer</h3>
+          <span class="when">Dec 2025 – present</span>
+        </div>
+        <p class="org"><b>Nouveau Labs</b> · client Five9</p>
+        <p class="d">Backend work on Five9 services. I built the Claims Extractor Service as an AWS Lambda function in Python, and I work on the uploader services, which pass events between services over Kafka.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">AWS Lambda</span><span class="tag">Kafka</span><span class="tag">Microservices</span></div>
+      </article>
+
+      <article class="job">
+        <div class="job-top">
+          <h3>Senior Software Engineer</h3>
+          <span class="when">Sep 2023 – Dec 2025</span>
+        </div>
+        <p class="org"><b>GlobalLogic</b> · client Kastle</p>
+        <p class="d">Built and maintained backend services in C# and .NET behind REST APIs. Services talked to each other through RabbitMQ events.</p>
+        <div class="tags"><span class="tag">C#</span><span class="tag">.NET</span><span class="tag">REST APIs</span><span class="tag">RabbitMQ</span><span class="tag">SQL</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="work">
+    <h2>Selected work</h2>
+    <div class="content">
+      <div class="work">
+        <article class="card">
+          <span class="meta">Five9 · Production</span>
+          <h3>Claims Extractor Service</h3>
+          <p>A Python AWS Lambda function that extracts claims. It was my first Python service in production at Nouveau Labs.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">AWS Lambda</span></div>
+        </article>
+
+        <article class="card">
+          <span class="meta">Five9 · Production</span>
+          <h3>Uploader services</h3>
+          <p>Services that coordinate through Kafka events instead of direct calls, so each one can change and scale on its own.</p>
+          <div class="tags"><span class="tag">Kafka</span><span class="tag">Event-driven</span></div>
+        </article>
+
+        <article class="card">
+          <span class="meta">Personal · AI</span>
+          <h3>RAG project</h3>
+          <p>A retrieval-augmented generation project built with LangChain and the OpenAI and Claude APIs, using MCP and prompt engineering.</p>
+          <div class="tags"><span class="tag">LangChain</span><span class="tag">OpenAI</span><span class="tag">Claude API</span><span class="tag">MCP</span></div>
+        </article>
+
+        <article class="card idea">
+          <span class="meta">In design</span>
+          <h3>JIRA resume agent</h3>
+          <p>An agent that reads the JIRA issues you worked on through the JIRA API and keeps your resume up to date from them.</p>
+          <div class="tags"><span class="tag">JIRA API</span><span class="tag">Agents</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack">
+    <h2>Stack</h2>
+    <div class="content">
+      <div class="stack">
+        <div class="row"><span class="label">Daily</span><div class="items"><span>C#</span><span>.NET</span><span>REST APIs</span><span>Microservices</span><span>SQL</span></div></div>
+        <div class="row"><span class="label">Growing</span><div class="items"><span>Python</span><span>Flask</span><span>AWS Lambda</span></div></div>
+        <div class="row"><span class="label">Messaging</span><div class="items"><span>Kafka</span><span>RabbitMQ</span></div></div>
+        <div class="row"><span class="label">Also used</span><div class="items"><span>Java</span><span>C++</span><span>Node (Express, NestJS)</span><span>Angular</span><span>React</span></div></div>
+        <div class="row"><span class="label">Cloud and delivery</span><div class="items"><span>Azure</span><span>AWS</span><span>Docker</span><span>CI/CD</span></div></div>
+        <div class="row"><span class="label">AI</span><div class="items"><span>RAG</span><span>LangChain</span><span>OpenAI API</span><span>Claude API</span><span>MCP</span><span>Prompt engineering</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <div class="content">
+      <div class="edu">
+        <div class="item">
+          <div><h3>M.Tech, Computer Science</h3><p class="sub">IIT Mandi</p></div>
+          <span class="when">2021 – 2023</span>
+        </div>
+        <div class="item">
+          <div><h3>Azure AI Fundamentals</h3><p class="sub">Microsoft certification</p></div>
+        </div>
+        <div class="item">
+          <div><h3>Python and Flask for AI</h3><p class="sub">IBM certification</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="content">
+      <div class="open">
+        <h3>Looking for Python and AI projects to work on.</h3>
+        <p>I have a full-time backend job and room for internship-style work. If you have a Python or AI problem and want someone who already ships services, my GitHub is the best place to start.</p>
+        <div class="links">
+          <a class="btn" href="https://www.linkedin.com/in/srijansingh021/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn ghost" href="https://github.com/Verito" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <div class="mail">
+          <span class="label">Email</span>
+          <span class="addr" id="email-addr">singhsrijan021@gmail.com</span>
+          <button type="button" class="copy" id="copy-email">Copy</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Srijan Singh · Noida, Uttar Pradesh</span>
+    <span>Updated October 2026</span>
+  </footer>
+</div>
+<script>
+(function () {
+  var btn = document.getElementById("copy-email");
+  var addr = document.getElementById("email-addr");
+  if (!btn || !addr) return;
+  btn.addEventListener("click", function () {
+    function done() { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy"; }, 1600); }
+    function select() {
+      var r = document.createRange(); r.selectNodeContents(addr);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = "Press copy";
+    }
+    try {
+      navigator.clipboard.writeText(addr.textContent.trim()).then(done, select);
+    } catch (e) { select(); }
+  });
+})();
+</script>
+</body>
+</html>
